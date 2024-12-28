@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gaming_app/pages/eventdetails.dart';
 import 'package:gaming_app/widgets/EventCard.dart';
+
+import '../widgets/custom_bottom_navigator.dart';
 
 class Homeview extends StatefulWidget {
   const Homeview({super.key});
@@ -24,7 +27,6 @@ class _Homeview extends State<Homeview> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: size.height * 0.02),
             Stack(
               children: [
                 //Image
@@ -90,25 +92,77 @@ class _Homeview extends State<Homeview> {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    const EventCard(
+                    EventCard(
                       title: "Workshop e aperitivo",
                       date: "18th January 2025",
                       price: "7.99",
                       imageUrl: "assets/images/workshop_image.png",
+                      ontap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Eventdetails(
+                              title: "Workshop e aperitivo",
+                              date: "18 Gen 2025",
+                              indirizzoImmagine:
+                                  "assets/images/workshop_image.png",
+                              indirizzoEvento: "Via Trucco, 70 -  10126 Torino",
+                              price: "7.99",
+                              organizer: "Nexus Legends",
+                              hour: "16.00 -21.00",
+                              titleindirizzo: "Oval Lingotto",
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     SizedBox(width: size.width * 0.03),
-                    const EventCard(
+                    EventCard(
                       title: "Torneo di Zelda",
                       date: "19th January 2025",
                       price: "7.99",
-                      imageUrl: "assets/images/zelda_image.png",
+                      imageUrl: "assets/images/zelda.jpg",
+                      ontap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Eventdetails(
+                              title: "Torneo di Zelda",
+                              date: "19 Gen 2025",
+                              indirizzoImmagine: "assets/images/zelda.jpg",
+                              indirizzoEvento: "Via Trucco, 70 -  10126 Torino",
+                              price: "7.99",
+                              organizer: "Nexus Legends",
+                              hour: "09.00 - 18.00",
+                              titleindirizzo: "Oval lingotto",
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     SizedBox(width: size.width * 0.03),
-                    const EventCard(
+                    EventCard(
                       title: "Evento speciale",
                       date: "20th January 2025",
                       price: "9.99",
                       imageUrl: "assets/images/vr_image.png",
+                      ontap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Eventdetails(
+                              title: "Evento speciale",
+                              date: "20 Gen 2025",
+                              indirizzoImmagine: "assets/images/vr_image.png",
+                              indirizzoEvento: "Via Trucco, 70 -  10126 Torino",
+                              price: "12.99",
+                              organizer: "Nexus Legend",
+                              hour: "16.00 -21.00",
+                              titleindirizzo: "Oval lingotto",
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -118,52 +172,14 @@ class _Homeview extends State<Homeview> {
 
             //terza sezione
             //creare un bottone con il testo "Acquista"
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 80,
-                  vertical: 10,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-              ),
-              onPressed: () {},
-              child: const Text(
-                "Acquista",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
-            ),
+
             SizedBox(height: size.height * 0.02),
           ],
         ),
       ),
       // quarta parte della home
       // bottomNavigationBar
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.deepPurple,
-        selectedItemColor: Colors.yellow,
-        unselectedItemColor: Colors.white,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.gamepad), // mod
-            label: "Games",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.emoji_events), // mod
-            label: "Classifica",
-          ),
-        ],
-      ),
+      bottomNavigationBar: const CustomBottomNavigator(),
     );
   }
 }
